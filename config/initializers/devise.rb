@@ -266,5 +266,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   
-  config.omniauth :twitch, "t9i63xar62syvuzouy70kf0ujy6wyxp", "syh7p3wulgk4ndutmw4kuipq1uw3f7v"
+  config.omniauth :twitch, "d6ywikl48cgr1cazses1k26y2uk7i6w", "edfupeqij7b0fvcb9rv7hbzl96e3126"
 end

@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  
+  before_create :set_default_role       
+  belongs_to :role
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:twitch]
@@ -14,6 +18,19 @@ class User < ActiveRecord::Base
         user.avatar = auth.extra.raw_info.logo
         user.tname = auth.extra.raw_info.display_name
       end
+  end
+  
+  
+  def set_default_role
+    self.role_id = 4
+  end
+
+  def is_admin?
+    self.role_id == 1
+  end
+
+  def is_guest?
+   self.role_id == 4
   end
          
 end

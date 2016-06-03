@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506011826) do
+ActiveRecord::Schema.define(version: 20160602154151) do
+
+  create_table "games", force: :cascade do |t|
+    t.string   "gamename",   limit: 255
+    t.string   "system",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -19,6 +26,20 @@ ActiveRecord::Schema.define(version: 20160506011826) do
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "rolename",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "teamname",    limit: 255
+    t.string   "teamlogo",    limit: 255
+    t.string   "teamwebsite", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,8 +57,11 @@ ActiveRecord::Schema.define(version: 20160506011826) do
     t.datetime "updated_at",                                      null: false
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
-    t.string   "avatar",                 limit: 255
     t.string   "tname",                  limit: 255
+    t.string   "avatar",                 limit: 255
+    t.integer  "role_id",                limit: 4
+    t.integer  "game_id",                limit: 4
+    t.integer  "team_id",                limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
